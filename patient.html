@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment as Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Loading Screen */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        /* Circle Animation */
+        .circle-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 10px solid lightgrey;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: green;
+            transform: translateY(100%);
+            animation: fillCircle 5s forwards;
+        }
+
+        @keyframes fillCircle {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Book Appointment</h1>
+    </header>
+
+    <div class="container" id="form-container">
+        <h2>Fill Patient Information</h2>
+        <form id="patient-form">
+            <label for="p-name">Name</label>
+            <input type="text" id="p-name" name="name" required>
+
+            <label for="p-age">Age</label>
+            <input type="number" id="p-age" name="age" required>
+
+            <label for="p-gender">Gender</label>
+            <select id="p-gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="profession">Profession</label>
+            <input type="text" id="profession" name="profession" required>
+
+            <label for="concern">Area of Concern</label>
+            <select id="concern" name="concern" required>
+                <option value="professional">professional</option>
+                <option value="personal">personal</option>
+                <option value="social">social</option>
+                <!-- More options can be added -->
+            </select>
+
+            <label for="p-religion">Religion</label>
+            <input type="text" id="p-religion" name="religion" required>
+
+            <label for="p-country">Country</label>
+            <input type="text" id="p-country" name="country" required>
+
+            <label for="p-ethnicity">Ethnicity</label>
+            <select id="p-ethnicity" name="ethnicity" required>
+                <option value="indian">Indian</option>
+                <option value="asian">Asian</option>
+                <option value="african">African</option>
+                <option value="hispanic">Hispanic</option>
+                <option value="european">European</option>
+            </select>
+
+            <label for="p-dis">Description</label>
+            <input type="text" id="p-dis" name="dis" required>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+
+    <div class="loading" id="loading-screen">
+        <h2>Processing your appointment...</h2>
+        <p>Please wait while we find the best match for you.</p>
+        <div class="circle-container">
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('patient-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Hide the form and show loading screen
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+
+            // Redirect after 5 seconds to the top doctors page
+            setTimeout(function() {
+                window.location.href = 'top-doctors.html';
+            }, 5000);
+        });
+    </script>
+
+</body>
+</html>
